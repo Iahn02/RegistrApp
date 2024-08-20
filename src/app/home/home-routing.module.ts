@@ -6,7 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+
   }
+  
 ];
 
 @NgModule({
