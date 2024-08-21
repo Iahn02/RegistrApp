@@ -1,26 +1,20 @@
-<ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Iniciar Sesión</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-list>
-              <ion-item>
-                <ion-label position="floating">Correo Electrónico</ion-label>
-                <ion-input type="email" value="ejemplo@correo.com"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="floating">Contraseña</ion-label>
-                <ion-input type="password" value="123456"></ion-input>
-              </ion-item>
-            </ion-list>
-            <ion-button expand="full" color="primary">Ingresar</ion-button>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content class="ion-padding">
+  <form (ngSubmit)="onSubmit()">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>  
+        <ion-item>
+          <ion-label position="floating">Correo Electrónico</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit" class="ion-margin-top">Ingresar</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </form>
 </ion-content>
