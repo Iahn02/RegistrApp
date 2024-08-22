@@ -19,23 +19,25 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   async onSubmit() {
-    // Aquí iría la lógica de autenticación
-    console.log('Email:', this.email);
-    console.log('Contraseña:', this.password);
-    
-    // Mostrar mensaje de éxito
-    await this.presentToast('Inicio de sesión exitoso');
-    
-    // Redirigir al usuario a la página de inicio
-    this.router.navigate(['/home']);
+    // Validar el email y la contraseña
+    if (this.email === 'brando.vera@gmail.com' && this.password === 'diegue') {
+      // Mostrar mensaje de éxito
+      await this.presentToast('Inicio de sesión exitoso');
+      
+      // Redirigir al usuario a la página de inicio
+      this.router.navigate(['/home']);
+    } else {
+      // Mostrar mensaje de error
+      await this.presentToast('Email o contraseña incorrectos', 'danger');
+    }
   }
 
-  async presentToast(message: string) {
+  async presentToast(message: string, color: string = 'success') {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000,
       position: 'top',
-      color: 'success'
+      color: color
     });
     toast.present();
   }
