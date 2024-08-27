@@ -1,60 +1,64 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>
-      Mi Dashboard
+      RegistrAPP
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-text>{{ fechaHora | date:'dd/MM/yyyy HH:mm' }}</ion-text>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-text>{{ nombreUsuario }}</ion-text>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
   
-<ion-button routerLink="/home/login">Ir a Login</ion-button>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" size-md="6">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Resumen</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-list>
-              <ion-item>
-                <ion-label>Tareas completadas</ion-label>
-                <ion-badge slot="end" color="success">8</ion-badge>
-              </ion-item>
-              <ion-item>
-                <ion-label>Tareas pendientes</ion-label>
-                <ion-badge slot="end" color="warning">3</ion-badge>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      
-      <ion-col size="12" size-md="6">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Actividad reciente</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-list>
-              <ion-item>
-                <ion-label>Proyecto A actualizado</ion-label>
-                <ion-note slot="end">Hace 2 horas</ion-note>
-              </ion-item>
-              <ion-item>
-                <ion-label>Nueva tarea asignada</ion-label>
-                <ion-note slot="end">Hace 1 día</ion-note>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Secciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item button (click)="abrirModal('Sección 1')">
+          <ion-label>Sección 1</ion-label>
+        </ion-item>
+        <ion-item button (click)="abrirModal('Sección 2')">
+          <ion-label>Sección 2</ion-label>
+        </ion-item>
+        <ion-item button (click)="abrirModal('Sección 3')">
+          <ion-label>Sección 3</ion-label>
+        </ion-item>
+        <ion-item button (click)="abrirModal('Sección 4')">
+          <ion-label>Sección 4</ion-label>
+        </ion-item>
+        <ion-item button (click)="abrirModal('Sección 5')">
+          <ion-label>Sección 5</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
   <app-navbar class="sticky-bottom"></app-navbar>
 
-
 </ion-content>
+
+<ion-modal #modal>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <ion-text class="ion-text-center">{{ seccionSeleccionada }}</ion-text>
+      <img src="assets/qr.jpg" alt="Código QR">
+      <p class="ion-text-center">{{ fechaHora | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+      
+      <!-- Lista de estudiantes sin confirmar asistencia -->
+      <ion-list>
+        <ion-item *ngFor="let estudiante of estudiantes">
+          <ion-icon name="close-circle" slot="start" color="danger"></ion-icon>
+          <ion-label>{{ estudiante.nombre }}</ion-label>
+        </ion-item>
+      </ion-list>
+      
+      <ion-button expand="block" (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,12 @@
+ion-button {
+  width: 33.33%; // Un tercio del ancho de la página
+  margin: 0 auto; // Centrar el botón horizontalmente
+  display: block; // Asegurar que el botón ocupe todo el ancho asignado
+}
+
+@media (max-width: 576px) {
+  ion-button {
+    width: 100%; // En dispositivos muy pequeños, ocupar todo el ancho
+    max-width: 33.33vw; // Limitar el ancho máximo a un tercio del viewport
+  }
+}

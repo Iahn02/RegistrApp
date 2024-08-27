@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     // Validar el email y la contraseña
-    if (this.email === 'brando.vera@gmail.com' && this.password === 'diegue') {
+    if (this.email === '' && this.password === '') {
       // Mostrar mensaje de éxito
       await this.presentToast('Inicio de sesión exitoso');
       
