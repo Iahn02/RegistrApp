@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { LoginComponent } from '../login/login.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { StudentViewComponent } from '../student-view/student-view.component';
 
 
 @NgModule({
@@ -14,9 +15,10 @@ import { NavbarComponent } from '../navbar/navbar.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
   declarations: [HomePage, LoginComponent, NavbarComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}
+

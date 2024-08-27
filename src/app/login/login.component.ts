@@ -20,12 +20,18 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     // Validar el email y la contraseña
-    if (this.email === '' && this.password === '') {
+    if (this.email === '1' && this.password === '') {
       // Mostrar mensaje de éxito
       await this.presentToast('Inicio de sesión exitoso');
       
       // Redirigir al usuario a la página de inicio
       this.router.navigate(['/home']);
+    } else if (this.email === '2' && this.password === '') {
+      // Mostrar mensaje de éxito
+      await this.presentToast('Inicio de sesión exitoso');
+      
+      // Redirigir al usuario a la vista de estudiante
+      this.router.navigate(['/home/student-view']);
     } else {
       // Mostrar mensaje de error
       await this.presentToast('Email o contraseña incorrectos', 'danger');
