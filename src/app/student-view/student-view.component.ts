@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { IonModal } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,18 +13,50 @@ import { Router } from '@angular/router';
 })
 export class StudentViewComponent implements OnInit {
   usuario = {
-    nombre: 'Juan',
-    apellido: 'Pérez',
-    email: 'juan.perez@example.com'
+    nombre: 'Brando',
+    apellido: 'Chacona',
+    email: 'bra.chacona@gmail.com'
   };
 
-  constructor(private router: Router) {}
+  @ViewChild('modal') modal!: IonModal;
+
+  mostrarAlerta: boolean = false;
+  alertButtons: any[];
+
+  constructor(private router: Router) {
+    this.alertButtons = [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => { this.mostrarAlerta = false; }
+      },
+      {
+        text: 'Sí',
+        handler: () => { this.cerrarSesion(); }
+      }
+    ];
+  }
 
   ngOnInit() {}
 
+  // Método para abrir el modal
+  abrirModal() {
+    this.modal.present();
+  }
+
+  // Método para cerrar el modal
+  cerrarModal() {
+    this.modal.dismiss();
+  }
+
+  // Método para cerrar sesión
   cerrarSesion() {
     // Lógica para cerrar sesión
     this.router.navigate(['/home/login']);
+  }
+
+  confirmarCerrarSesion() {
+    this.mostrarAlerta = true;
   }
 }
 

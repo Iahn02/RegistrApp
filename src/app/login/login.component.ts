@@ -10,6 +10,7 @@ import { ToastController } from '@ionic/angular';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  showPassword: boolean = false;
 
   constructor(
     private router: Router,
@@ -20,18 +21,20 @@ export class LoginComponent implements OnInit {
 
   async onSubmit() {
     // Validar el email y la contraseña
-    if (this.email === '1' && this.password === '') {
+    if (this.email === 'bra.chacona@gmail.com' && this.password === '123456') {
+      // Mostrar mensaje de éxito
+      await this.presentToast('Inicio de sesión exitoso');
+      console.log('login email: ', this.email);
+      console.log('login password: ', this.password);
+      // Redirigir al usuario a la página de inicio sin parámetros en la URL
+      this.router.navigate(['/home/student-view'], { state: { email: this.email, password: this.password, perfil: 'estudiante' } });
+    
+    } else if (this.email === 'iah.chacona@gmail.com' && this.password === '123457') {
       // Mostrar mensaje de éxito
       await this.presentToast('Inicio de sesión exitoso');
       
-      // Redirigir al usuario a la página de inicio
-      this.router.navigate(['/home']);
-    } else if (this.email === '2' && this.password === '') {
-      // Mostrar mensaje de éxito
-      await this.presentToast('Inicio de sesión exitoso');
-      
-      // Redirigir al usuario a la vista de estudiante
-      this.router.navigate(['/home/student-view']);
+      // Redirigir al usuario a la vista de estudiante sin parámetros en la URL
+      this.router.navigate(['/home'], { state: { email: this.email, password: this.password, perfil: 'profesor' } });
     } else {
       // Mostrar mensaje de error
       await this.presentToast('Email o contraseña incorrectos', 'danger');
@@ -46,5 +49,9 @@ export class LoginComponent implements OnInit {
       color: color
     });
     toast.present();
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
