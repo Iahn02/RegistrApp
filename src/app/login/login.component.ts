@@ -10,6 +10,7 @@ import { ToastController } from '@ionic/angular';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  showPassword: boolean = false;
 
   constructor(
     private router: Router,
@@ -48,5 +49,9 @@ export class LoginComponent implements OnInit {
       color: color
     });
     toast.present();
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

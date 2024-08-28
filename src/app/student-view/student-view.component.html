@@ -2,7 +2,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12" class="ion-text-right">
-        <ion-card>
+        <ion-card class="user-info-card">
           <ion-card-header>
             <ion-card-title>Información del Usuario</ion-card-title>
           </ion-card-header>
@@ -18,15 +18,32 @@
                 <ion-label>Email: {{ usuario.email }}</ion-label>
               </ion-item>
             </ion-list>
-            <ion-button expand="block" (click)="cerrarSesion()">Cerrar sesión</ion-button>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
     <ion-row class="ion-margin-top">
       <ion-col size="12" class="ion-text-center">
-        <img src="assets/imgs/cam.jpg" alt="Imagen Central">
+        <ion-button (click)="abrirModal()">REGISTRA TU ASISTENCIA</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-modal #modal>
+  <ng-template>
+    <ion-content class="ion-padding">
+      <img src="assets/imgs/cam.jpg" alt="Imagen Central">
+      <ion-button expand="block" (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-button expand="block" (click)="confirmarCerrarSesion()">Cerrar sesión</ion-button>
+
+<ion-alert
+  [isOpen]="mostrarAlerta"
+  header="Confirmar"
+  message="¿Estás seguro de que deseas cerrar sesión?"
+  [buttons]="alertButtons">
+</ion-alert>

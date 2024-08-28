@@ -4,9 +4,29 @@ ion-button {
   display: block; // Asegurar que el botón ocupe todo el ancho asignado
 }
 
+ion-item.password-item {
+  display: flex;
+  align-items: center;
+}
+
+ion-button.password-toggle {
+  margin-left: auto; // Alinear el botón a la derecha
+}
+
+
+
 @media (max-width: 576px) {
-  ion-button {
-    width: 100%; // En dispositivos muy pequeños, ocupar todo el ancho
-    max-width: 33.33vw; // Limitar el ancho máximo a un tercio del viewport
+  ion-card {
+    width: 100%;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+  ion-item.password-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  ion-button.password-toggle {
+    margin-left: 0;
+    margin-top: 8px;
   }
 }
