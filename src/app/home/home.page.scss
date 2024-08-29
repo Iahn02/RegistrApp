@@ -21,3 +21,31 @@
 #container a {
   text-decoration: none;
 }
+
+
+// Modo noche
+.night-mode {
+  background-color: #121212;
+  color: #ffffff;
+  ion-toolbar {
+    background: #1f1f1f;
+    color: #ffffff;
+  }
+}
+// Modo día
+.day-mode {
+  background-color: #ffffff;
+  color: #000000;
+  ion-toolbar {
+    background: #ffff00;
+    color: #000000;
+  }
+}
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+}

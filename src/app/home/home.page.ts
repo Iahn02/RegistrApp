@@ -1,6 +1,7 @@
   import { Component, ViewChild } from '@angular/core';
   import { IonModal } from '@ionic/angular';
   import { Router } from '@angular/router';
+  import { Platform } from '@ionic/angular';
 
   @Component({
     selector: 'app-home',
@@ -11,7 +12,7 @@
     @ViewChild('modalQR') modalQR!: IonModal;
     @ViewChild('modalConfirmar') modalConfirmar!: IonModal;
     fechaHora: Date = new Date();
-    nombreUsuario: string = 'Profesor';
+    nombreUsuario: string = 'Profesor Iahn';
     seccionSeleccionada: string = '';
     estudiantes: { nombre: string }[] = [
       { nombre: 'Diegue Chacon' },
@@ -22,8 +23,9 @@
     ];
     mostrarAlerta: boolean = false;
     alertButtons: any[];
+    isNightMode: boolean = false;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private platform: Platform) {
       this.alertButtons = [
         {
           text: 'Cancelar',
@@ -54,5 +56,16 @@
 
   confirmarCerrarSesion() {
     this.mostrarAlerta = true;
+  }
+
+  toggleNightMode() {
+    this.isNightMode = !this.isNightMode;
+    if (this.isNightMode) {
+      document.body.classList.add('night-mode');
+      document.body.classList.remove('day-mode');
+    } else {
+      document.body.classList.add('day-mode');
+      document.body.classList.remove('night-mode');
+    }
   }
 }
