@@ -1,59 +1,72 @@
     <ion-header [translucent]="true">
     <ion-toolbar color="primary">
-      <ion-title class="ion-text-left" style="margin-left: 2px;">
+      <ion-title class="ion-text-left" style="position: relative; top: 10%; left: 0; margin-left: 2%;" style="font-size: 20px; font-weight: bold;">
         RegistrAPP
       </ion-title>
       <ion-buttons slot="end">
         <ion-text>{{ nombreUsuario }}</ion-text>
         <ion-button (click)="confirmarCerrarSesion()">Cerrar Sesión</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+        <ion-button (click)="toggleNightMode()" style="margin-left: auto;"></ion-button>
+        <ion-icon name="moon" *ngIf="!isNightMode"></ion-icon>
+        <ion-icon name="sunny" *ngIf="isNightMode"></ion-icon>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
 
   <ion-content [fullscreen]="true" class="ion-padding">
-    
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Secciones</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-text class="ion-text-center">{{ fechaHora | date:'dd/MM/yyyy HH:mm' }}</ion-text>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Lista de Secciones</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-list>
-          <ion-item button (click)="abrirModal('Sección 1')">
-            <ion-label>Sección 1</ion-label>
-          </ion-item>
-          <ion-item button (click)="abrirModal('Sección 2')">
-            <ion-label>Sección 2</ion-label>
-          </ion-item>
-          <ion-item button (click)="abrirModal('Sección 3')">
-            <ion-label>Sección 3</ion-label>
-          </ion-item>
-          <ion-item button (click)="abrirModal('Sección 4')">
-            <ion-label>Sección 4</ion-label>
-          </ion-item>
-          <ion-item button (click)="abrirModal('Sección 5')">
-            <ion-label>Sección 5</ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
-    </ion-card>
-
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Hola {{ nombreUsuario }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-text class="ion-text-center">{{ fechaHora | date:'dd/MM/yyyy' }}</ion-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <ion-card>
+            <ion-card-header style="background-color: yellow;">
+              <ion-card-title style="color: black; font-size: 20px; font-weight: bold;">Lista de Secciones</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item button (click)="abrirModal('CALIDAD DE SOFTWARE')">
+                  <ion-label>CALIDAD DE SOFTWARE</ion-label>
+                </ion-item>
+                <ion-item button (click)="abrirModal('DESARROLLO DE SOFTWARE DE ESCRITORIO')">
+                  <ion-label>DESARROLLO DE SOFTWARE DE ESCRITORIO</ion-label>
+                </ion-item>
+                <ion-item button (click)="abrirModal('PROGRAMACION DE APLICACIONES MOVILES')">
+                  <ion-label>PROGRAMACION DE APLICACIONES MOVILES</ion-label>
+                </ion-item>
+                <ion-item button (click)="abrirModal('PROGRAMACION WEB')">
+                  <ion-label>PROGRAMACION WEB</ion-label>
+                </ion-item>
+                <ion-item button (click)="abrirModal('ARQUITECTURA DE SOFTWARE')">
+                  <ion-label>ARQUITECTURA DE SOFTWARE</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-content>
 
   <ion-modal #modalQR>
     <ng-template>
       <ion-content class="ion-padding">
-        <ion-text class="ion-text-center">{{ seccionSeleccionada }}</ion-text>
-        <img src="assets/imgs/qr.jpg" alt="Código QR">
-        <p class="ion-text-center">{{ fechaHora | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+        <div style="text-align: center;">
+          <ion-title style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); padding: 5px;">
+            {{ seccionSeleccionada }}
+          </ion-title>
+          <img src="assets/imgs/qr.jpg" alt="Código QR" class="responsive-img" style="margin-top: 5%;">
+
+        </div>
+        <p class="ion-text-center">{{ fechaHora | date:'dd/MM/yyyy HH:mm' }}</p>
         
         <!-- Lista de estudiantes sin confirmar asistencia -->
         <ion-list>
@@ -62,9 +75,10 @@
             <ion-label>{{ estudiante.nombre }}</ion-label>
           </ion-item>
         </ion-list>
-        
-        <ion-button expand="block" (click)="cerrarModal()">Cerrar</ion-button>
       </ion-content>
+      <ion-footer>
+        <ion-button expand="block" (click)="cerrarModal()">Cerrar</ion-button>
+      </ion-footer>
     </ng-template>
   </ion-modal>
 
