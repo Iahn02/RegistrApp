@@ -67,8 +67,33 @@
 
 </p>
 
-<br/>
-<br/>
+### Lógica del proyecto
+
+
+<!-- Complemento de la lógica de la solución -->
+<p>
+  La lógica de la solución sería la siguiente:
+  <ol>
+    <li>Docente ingresa a sistema web con sus credenciales de acceso.</li>
+    <li>Docente comienza proceso de Asistencia en Línea, haciendo clic en un botón que genere un código QR.</li>
+    <li>Este código QR se despliega en el proyector de cada aula.</li>
+    <li>Los alumnos ingresan a la App ingresando sus credenciales de acceso.</li>
+    <li>Se despliega la cámara del dispositivo móvil.</li>
+    <li>El código es leído y a su vez, registrado.</li>
+    <li>La asistencia queda registrada con su día y hora correctamente.</li>
+  </ol>
+</p>
+
+<p>
+  Los principales objetivos de la App son:
+  <ul>
+    <li>Reducir los tiempos destinados para registrar la asistencia.</li>
+    <li>Minimizar errores de registros por motivos ya mencionados.</li>
+    <li>Instar a los alumnos a asistir presencialmente a clases.</li>
+    <li>Mejorar el proceso de reportes de asistencias.</li>
+  </ul>
+</p>
+
 <br/>
 
 ### Configuración del Proyecto
