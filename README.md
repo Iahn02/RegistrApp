@@ -70,7 +70,9 @@
 <br/>
 <br/>
 <br/>
-## Configuración del Proyecto
+
+### Configuración del Proyecto
+- **Frontend**: Angular, utilizando Ionic para la interfaz de usuario móvil y TypeScript para el desarrollo.
 
 ### Archivos Principales
 
