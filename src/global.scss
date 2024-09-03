@@ -35,3 +35,11 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+/* ... código existente ... */
+
+  
+  /* Asegúrate de que todos los elementos tengan el fondo negro */
+  ion-content, ion-header, ion-footer, ion-toolbar, ion-page {
+    --background: #1e1e1e; /* Fondo negro para componentes de Ionic */
+  }
+  /* ... código existente ... */
