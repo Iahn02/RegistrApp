@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './student-view.component.html',
   styleUrls: ['./student-view.component.scss']
 })
-export class StudentViewComponent implements OnInit {
+export class StudentViewComponent  {
   usuario = {
     nombre: 'Brando',
     apellido: 'Chacona',
@@ -37,7 +37,6 @@ export class StudentViewComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {}
 
   // Método para abrir el modal
   abrirModal() {
