@@ -10,10 +10,13 @@ export class NavbarComponent  implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() { console.log('navbar');}
 
   cerrarSesion() {
     // Lógica para cerrar sesión
-    this.router.navigate(['/home/login']);
+    this.router.navigate(['/home/login']).then(() => {
+      window.location.reload();
+    });
   }
-}
+  }
+

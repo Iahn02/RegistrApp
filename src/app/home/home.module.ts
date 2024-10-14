@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { LoginComponent } from '../login/login.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { StudentViewComponent } from '../student-view/student-view.component';
+import { RestablecercontrasenaComponent } from '../restablecercontrasena/restablecercontrasena.component';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { StudentViewComponent } from '../student-view/student-view.component';
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, LoginComponent, NavbarComponent],
+  declarations: [HomePage, LoginComponent, NavbarComponent, RestablecercontrasenaComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}

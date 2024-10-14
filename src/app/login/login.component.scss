@@ -30,3 +30,21 @@ ion-button.password-toggle {
     margin-top: 8px;
   }
 }
+
+
+.btn-submit:hover {
+  background-color: #4444fe !important ; // Cambiar el color de fondo al pasar el mouse
+  color: #ffffff; // Asegurar que el texto permanezca blanco
+}
+.btn_ojo:hover {
+  color: #ffffff !important;
+   // Cambiar el color del ojo a rojo cuando el mouse esté arriba de él
+   background-color:  rgb(42, 42, 42) !important;
+}
+.btn-restablecer:hover {
+  color: #4444fe !important;
+
+}
+
+
+

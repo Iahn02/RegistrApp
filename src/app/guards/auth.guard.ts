@@ -14,24 +14,33 @@ export class authGuard implements CanActivate {
     const email = navigation?.extras.state?.['email']; // Obtener el email del estado de la navegación
     const password = navigation?.extras.state?.['password']; // Obtener la contraseña del estado de la navegación
     const perfil = navigation?.extras.state?.['perfil'];
-    console.log('guardia: ', email, password);
-    if (email === 'bra.chacona@gmail.com' && password === '123456' && perfil === 'estudiante') {
-      return true;
-    } else if (email === 'iah.chacona@gmail.com' && password === '123457' && perfil === 'profesor') {
-      return true;
+
+
+    // Obtener los usuarios del local storage
+    const storedUsers = localStorage.getItem('users');
+    if (storedUsers) {
+      const users = JSON.parse(storedUsers);
+      const user = users.find((user: { email: string, password: string, perfil: string }) => user.email === email && user.password === password && user.perfil === perfil);
+      if (user) {
+        return true;
+      } else {
+        this.router.navigate(['/home/login']);
+        this.presentToast('No tienes acceso a esta vista', 'danger');
+        return false;
+      }
     } else {
       this.router.navigate(['/home/login']);
-      this.presentToast('No tienes acceso a esta vista');
+      this.presentToast('No hay usuarios registrados', 'danger');
       return false;
     }
   }
 
-  async presentToast(message: string) {
+  async presentToast(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000,
       position: 'top',
-      color: 'danger'
+      color: color
     });
     toast.present();
   }

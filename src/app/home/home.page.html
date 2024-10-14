@@ -63,7 +63,7 @@
           <ion-title style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); padding: 5px;">
             {{ seccionSeleccionada }}
           </ion-title>
-          <img src="assets/imgs/qr.jpg" alt="Código QR" class="responsive-img" style="margin-top: 5%;">
+          <img [src]="qrCodeUrl" alt="Código QR" class="responsive-img" style="margin-top: 5%;">
 
         </div>
         <p class="ion-text-center">{{ fechaHora | date:'dd/MM/yyyy HH:mm' }}</p>
