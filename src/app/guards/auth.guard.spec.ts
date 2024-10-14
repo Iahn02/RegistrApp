@@ -3,7 +3,7 @@ import { CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
 
 import { authGuard } from './auth.guard';
-
+// Importante Corregir e implementar el guardia de forma correcta
 describe('authGuard', () => {
   let guard: authGuard;
 
