@@ -17,11 +17,10 @@ export class authGuard implements CanActivate {
 
 
     // Obtener los usuarios del local storage
-    const storedUsers = localStorage.getItem('users');
-    if (storedUsers) {
-      const users = JSON.parse(storedUsers);
-      const user = users.find((user: { email: string, password: string, perfil: string }) => user.email === email && user.password === password && user.perfil === perfil);
-      if (user) {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      if (user.email === email && user.password === password && user.perfil === perfil) {
         return true;
       } else {
         this.router.navigate(['/home/login']);

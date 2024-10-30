@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import axios from 'axios'; // Importar axios correctamente
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,14 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  email: string = '';
+  user: string = '';
   password: string = '';
   newPassword: string = ''; // Nueva contraseña
   confirmPassword: string = ''; // Confirmar nueva contraseña
   showPassword: boolean = false;
   failedAttempts: number = 0; // Contador de intentos fallidos
-  users: { email: string, password: string, perfil: string }[] = [];
+  users: { user: string, password: string, perfil: string }[] = [];
+  isDarkTheme: boolean = false;
 
   constructor(
     private router: Router,
@@ -22,40 +24,37 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Obtener los usuarios del local storage
-    
-    const storedUsers = localStorage.getItem('users');
-    if (storedUsers) {
-      this.users = JSON.parse(storedUsers);
-    } else {
-      // Si no hay usuarios en el local storage, inicializar con algunos valores por defecto
-      this.users = [
-        { email: 'bra.chacona@gmail.com', password: '123456', perfil: 'estudiante' },
-        { email: 'iah.chacona@gmail.com', password: '123457', perfil: 'profesor' }
-      ];
-      localStorage.setItem('users', JSON.stringify(this.users));
-    }
+    this.applyTheme();
   }
 
-  onSubmit() {
-    // Obtener los usuarios del local storage y mostrar en consola
-    
-    const storedUsers = localStorage.getItem('users');
-    // Validar el email y la contraseña
-    const user = this.users.find(user => user.email === this.email && user.password === this.password);
-    if (user) {
-      // Mostrar mensaje de éxito
-      this.presentToast('Inicio de sesión exitoso');
-      // Redirigir al usuario a la página de inicio sin parámetros en la URL
-      const route = user.perfil === 'estudiante' ? '/home/student-view' : '/home';
-      this.router.navigate([route], { state: { email: this.email, password: this.password, perfil: user.perfil } }).then(() => {
-        this.limpiarInputs();
-      });
-    } else {
-      // Incrementar el contador de intentos fallidos
-      this.failedAttempts++;
-      // Mostrar mensaje de error
-      this.presentToast(`Email o contraseña incorrectos. Intentos fallidos: ${this.failedAttempts}`, 'danger');
+  async onSubmit() {
+    console.log('Usuario:', this.user, 'Password:', this.password);
+    try {
+      const body = {
+        user: this.user,
+        password: this.password
+      };
+      const response = await axios.post('http://127.0.0.1:5000/login', body);
+      console.log('Comunicación con la PI:', response); // Agregar console log de la comunicación con la PI
+      if (response.status === 200) {
+        const user = response.data;
+        localStorage.setItem('user', JSON.stringify(user));
+        this.presentToast('Inicio de sesión exitoso');
+        // Navegar al componente de inicio
+        const route = '/home';
+        this.router.navigate([route], { state: { user: user } }).then(() => {
+          window.location.reload();
+          this.limpiarInputs();
+        });
+      }
+    } catch (error: any) {
+      console.error('Error en la solicitud:', error);
+      if (error.response && error.response.status === 401) {
+        this.presentToast('No autorizado. Por favor, verifique sus credenciales.', 'danger');
+      } else {
+        this.failedAttempts++;
+        this.presentToast(`Usuario o contraseña incorrectos. Intentos fallidos: ${this.failedAttempts}`, 'danger');
+      }
     }
   }
 
@@ -65,23 +64,10 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    const storedUsers = localStorage.getItem('users');
-    if (storedUsers) {
-      const users = JSON.parse(storedUsers);
-      const userIndex = users.findIndex((user: { email: string; }) => user.email === this.email);
-      if (userIndex !== -1) {
-        users[userIndex].password = this.newPassword;
-        localStorage.setItem('users', JSON.stringify(users));
-        this.presentToast('Contraseña restablecida con éxito', 'success');
-        this.router.navigate(['/home/login'], { state: { email: this.email, password: this.newPassword } }).then(() => {
-          
-        });
-      } else {
-        this.presentToast('Correo electrónico no encontrado', 'danger');
-      }
-    } else {
-      this.presentToast('No hay usuarios registrados', 'danger');
-    }
+    this.presentToast('Contraseña restablecida con éxito', 'success');
+    this.router.navigate(['/home/login'], { state: { user: this.user, password: this.newPassword } }).then(() => {
+      
+    });
   }
 
   presentToast(message: string, color: string = 'success') {
@@ -101,10 +87,33 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['home/restablecercontrasena']);
   }
   limpiarInputs() {
-    this.email = '';
+    this.user = '';
     this.password = '';
     this.newPassword = '';
     this.confirmPassword = '';
   }
-}
 
+  toggleTheme(event: any) {
+    this.applyTheme();
+  }
+
+  applyTheme() {
+    this.isDarkTheme = true;
+    document.body.classList.remove('light-theme');
+    document.body.style.backgroundColor = '#121212';
+    document.body.style.color = '#ffffff';
+    document.querySelectorAll('.card').forEach((element) => {
+      element.classList.add('bg-dark', 'text-light');
+      element.classList.remove('bg-light', 'text-dark');
+    });
+    document.querySelectorAll('.btn').forEach((element) => {
+      element.classList.add('btn-dark');
+      element.classList.remove('btn-light');
+    });
+    document.querySelectorAll('ion-content').forEach((element) => {
+      element.style.backgroundColor = '#121212';
+      element.style.color = '#ffffff';
+    });
+    console.log('El color aún no ha cambiado');
+  }
+}
