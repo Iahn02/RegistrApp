@@ -4,31 +4,27 @@ import { HomePage } from './home.page';
 import { LoginComponent } from '../login/login.component';
 import { StudentViewComponent } from '../student-view/student-view.component';
 import { RestablecercontrasenaComponent } from '../restablecercontrasena/restablecercontrasena.component'; // Importa el componente Restablecercontrasena
-import { authGuard } from '../guards/auth.guard'; // Importa el guardia de autenticación
+import { authGuard } from '../guards/auth.guard'; // Importa el authGuard
 
 const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    canActivate: [authGuard], // Aplica el guardia de autenticación
-
+    canActivate: [authGuard] // Añade el authGuard
   },
   {
     path: 'login',
     component: LoginComponent,
-
   },
   {
     path: 'student-view',
     component: StudentViewComponent,
-    canActivate: [authGuard],  
+    canActivate: [authGuard] // Añade el authGuard
   },
   {
     path: 'restablecercontrasena',
     component: RestablecercontrasenaComponent,
-    
   }
-  
 ];
 
 @NgModule({

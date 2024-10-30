@@ -29,7 +29,7 @@ export class authGuard implements CanActivate {
       }
     } else {
       this.router.navigate(['/home/login']);
-      this.presentToast('No hay usuarios registrados', 'danger');
+      this.presentToast('No tienes acceso a esta vista', 'danger');
       return false;
     }
   }

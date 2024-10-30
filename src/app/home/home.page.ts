@@ -66,6 +66,7 @@
     // Método para cerrar sesión
     cerrarSesion() {
       // Lógica para cerrar sesión
+      localStorage.removeItem('user'); // Eliminar el usuario del almacenamiento local
       this.router.navigate(['/home/login']);
     }
 
