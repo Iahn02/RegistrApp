@@ -18,7 +18,7 @@ import { RestablecercontrasenaComponent } from '../restablecercontrasena/restabl
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, LoginComponent, NavbarComponent, RestablecercontrasenaComponent],
+  declarations: [HomePage, LoginComponent, StudentViewComponent, NavbarComponent, RestablecercontrasenaComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}
