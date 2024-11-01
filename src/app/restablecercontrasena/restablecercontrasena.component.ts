@@ -75,9 +75,11 @@ export class RestablecercontrasenaComponent implements OnInit {
         await alert.present();
       } else {
         this.presentToast('Correo electrónico no encontrado', 'danger');
+        this.router.navigate(['/home/login']);
       }
     } else {
       this.presentToast('No hay usuarios registrados', 'danger');
+      this.router.navigate(['/home/login']);
     }
   }
 

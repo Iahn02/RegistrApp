@@ -1,24 +1,29 @@
-<ion-content class="ion-padding" style="background-color: #121212; color: #ffffff;">
-  <form (ngSubmit)="onSubmit()" class="container">
-    <div class="card" style="background-color: #1e1e1e; color: #ffffff; border: 1px solid #000000; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);">
-      <div class="card-header text-center" style="background-color: rgb(42, 42, 42); color: #ffffff;">
-        <h5 class="card-title">Restablecer Contraseña</h5>
-      </div>
-      <div class="card-body">
-        <div class="form-group">
-          <label for="email">Correo Electrónico</label>
-          <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required style="background-color: #ffffff; color: #000000;">
-        </div>
-        <div class="form-group">
-          <label for="newPassword">Nueva Contraseña</label>
-          <input type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required style="background-color: #ffffff; color: #000000;">
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">Confirmar Contraseña</label>
-          <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required style="background-color: #ffffff; color: #000000;">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block mt-3" style="background-color: #0000ff; color: #ffffff; transition: background-color 0.3s ease">Restablecer</button>
-      </div>
-    </div>
+<ion-content class="ion-padding" style="background-color: #121212; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <form (ngSubmit)="onSubmit()" class="container" style="width: 100%;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card style="background-color: #1e1e1e; color: #ffffff; border: 1px solid #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); border-radius: 10px;">
+          <ion-card-header class="ion-text-center" style="background-color: #2a2a2a; color: #ffffff; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <ion-card-title style="font-size: 1.5em; font-weight: bold; color: #ffffff;">Restablecer Contraseña</ion-card-title>
+          </ion-card-header>
+          <br>
+          <ion-card-content>
+            <ion-item style="--background: #2a2a2a; --color: #ffffff; border-radius: 5px; margin-bottom: 20px;">
+              <ion-label style="color: #ffffff; margin-right: 10px;">Correo Electrónico</ion-label>
+              <ion-input type="email" [(ngModel)]="email" name="email" required style="background-color: #333; color: #ffffff; border-radius: 5px; padding: 10px;"></ion-input>
+            </ion-item>
+            <ion-item style="--background: #2a2a2a; --color: #ffffff; border-radius: 5px; margin-bottom: 20px;">
+              <ion-label style="color: #ffffff; margin-right: 10px;">Nueva Contraseña</ion-label>
+              <ion-input type="password" [(ngModel)]="newPassword" name="newPassword" required style="background-color: #333; color: #ffffff; border-radius: 5px; padding: 10px;"></ion-input>
+            </ion-item>
+            <ion-item style="--background: #2a2a2a; --color: #ffffff; border-radius: 5px; margin-bottom: 30px;">
+              <ion-label style="color: #ffffff; margin-right: 10px;">Confirmar Contraseña</ion-label>
+              <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required style="background-color: #333; color: #ffffff; border-radius: 5px; padding: 10px;"></ion-input>
+            </ion-item>
+            <ion-button expand="block" type="submit" class="mt-3" style="background-color: #007bff; color: #ffffff; transition: background-color 0.3s ease; border-radius: 5px;">Restablecer</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </form>
 </ion-content>

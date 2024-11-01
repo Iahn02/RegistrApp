@@ -1,31 +1,31 @@
-<ion-content class="ion-padding" style="background-color: #121212 ; color: #ffffff;">
-  <form (ngSubmit)="onSubmit()" class="container">
-    <div class="card" style="background-color: #1e1e1e; color: #ffffff; border: 1px solid #000000; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);">
-      <div class="card-header text-center" style="background-color: rgb(42, 42, 42); color: #ffffff;">
-        <h5 class="card-title">Iniciar Sesión</h5>
-      </div>
-      <div class="card-body">  
-        <div class="form-group">
-          <label for="user">Usuario</label>
-          <input type="text" class="form-control" id="user" [(ngModel)]="user" name="user" required style="background-color: #ffffff; color: #000000;">
-        </div>
-        <div class="form-group">
-          <label for="password">Contraseña</label>
-          <div class="input-group">
-            <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" [(ngModel)]="password" name="password" required style="background-color: #ffffff; color: #000000;">
-            <div class="input-group-append" style="align-items: center;">
-              <button class="btn btn_ojo" type="button" (click)="togglePasswordVisibility()" style="background-color: #ffffff; color: rgb(42, 42, 42); display: flex; align-items: center; transition: background-color 0.3s ease;">
+<ion-content class="ion-padding" style="background-color: #121212; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <form (ngSubmit)="onSubmit()" class="container" style="width: 100%;">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card style="background-color: #1e1e1e; color: #ffffff; border: 1px solid #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); border-radius: 10px;">
+          <ion-card-header class="ion-text-center" style="background-color: #2a2a2a; color: #ffffff; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <ion-card-title style="font-size: 1.5em; font-weight: bold; color: #ffffff;">Iniciar Sesión</ion-card-title>
+          </ion-card-header>
+          <br>
+          <ion-card-content>
+            <ion-item style="--background: #2a2a2a; --color: #ffffff; border-radius: 5px; margin-bottom: 20px;">
+              <ion-label style="color: #ffffff; margin-right: 10px;">Usuario</ion-label>
+              <ion-input type="text" [(ngModel)]="user" name="user" required style="background-color: #333; color: #ffffff; border-radius: 5px; padding: 10px;"></ion-input>
+            </ion-item>
+            <ion-item style="--background: #2a2a2a; --color: #ffffff; border-radius: 5px; margin-bottom: 20px;">
+              <ion-label style="color: #ffffff; margin-right: 10px;">Contraseña</ion-label>
+              <ion-input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" required style="background-color: #333; color: #ffffff; border-radius: 5px; padding: 10px;"></ion-input>
+              <ion-button fill="clear" (click)="togglePasswordVisibility()" style="color: #ffffff; font-size: 12px; padding: 0; margin-left: 15px; width: 50px;">
                 <ion-icon [name]="showPassword ? 'eye-off' : 'eye'" style="font-size: 24px;"></ion-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block mt-3 btn-submit" style="background-color: #0000ff; color: #ffffff; transition: background-color 0.3s ease">Ingresar</button>
-        <p class="text-center mt-3">
-          <a href="javascript:void(0);" (click)="navigateToRestablecerContrasena()" style="color: #ffffff; transition: color 0.3s ease" class="btn-restablecer">Restablecer Contraseña</a>
-        </p>
-      </div>
-    </div>
+              </ion-button>
+            </ion-item>
+            <ion-button expand="block" type="submit" class="mt-3" style="background-color: #007bff; color: #ffffff; transition: background-color 0.3s ease; border-radius: 5px; width: 100%;">Ingresar</ion-button>
+            <p class="text-center mt-3">
+              <a href="javascript:void(0);" (click)="navigateToRestablecerContrasena()" style="color: #ffffff; transition: color 0.3s ease;" class="btn-restablecer">Restablecer Contraseña</a>
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </form>
-  
 </ion-content>
