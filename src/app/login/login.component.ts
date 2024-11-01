@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit() {
-    console.log('Usuario:', this.user, 'Password:', this.password);
+    console.log('Usuario:', this.user, 'Password:', this.password, );
     try {
       const body = {
         user: this.user,
@@ -39,10 +39,16 @@ export class LoginComponent implements OnInit {
       if (response.status === 200) {
         const user = response.data;
         localStorage.setItem('user', JSON.stringify(user));
+        console.log('Usuario almacenado en localStorage:', user);
         this.presentToast('Inicio de sesión exitoso');
-        // Navegar al componente de inicio
-        const route = '/home';
-        this.router.navigate([route], { state: { user: user } }).then(() => {
+        // Validar el perfil del usuario y redirigir según corresponda
+        let route = '/home';
+        if (user.tipoPerfil === 1) {
+          route = '/home';
+        } else if (user.tipoPerfil === 2) {
+          route = '/home/student-view';
+        }
+        this.router.navigate([route], { state: { user: user, perfil: user.tipoPerfil } }).then(() => {
           window.location.reload();
           this.limpiarInputs();
         });

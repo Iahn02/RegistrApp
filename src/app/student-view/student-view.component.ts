@@ -11,12 +11,8 @@ import { Router } from '@angular/router';
   templateUrl: './student-view.component.html',
   styleUrls: ['./student-view.component.scss']
 })
-export class StudentViewComponent  {
-  usuario = {
-    nombre: 'Brando',
-    apellido: 'Chacona',
-    email: 'bra.chacona@gmail.com'
-  };
+export class StudentViewComponent implements OnInit {
+  usuario: any;
 
   @ViewChild('modal') modal!: IonModal;
 
@@ -37,6 +33,21 @@ export class StudentViewComponent  {
     ];
   }
 
+  ngOnInit() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.usuario = JSON.parse(storedUser);
+    } else {
+      this.usuario = {
+        "id": 0,
+        "user": "desconocido",
+        "password": "",
+        "nombre": "",
+        "perfil":  1,
+        "correo": ""
+      };
+    }
+  }
 
   // Método para abrir el modal
   abrirModal() {
@@ -50,7 +61,7 @@ export class StudentViewComponent  {
 
   // Método para cerrar sesión
   cerrarSesion() {
-    // Lógica para cerrar sesión
+    localStorage.removeItem('user');
     this.router.navigate(['/home/login']);
   }
 

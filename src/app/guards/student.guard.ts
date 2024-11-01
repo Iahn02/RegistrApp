@@ -6,7 +6,7 @@ import { ToastController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root',
 })
-export class authGuard implements CanActivate {
+export class studentGuard implements CanActivate {
   constructor(private router: Router, private toastController: ToastController) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
@@ -17,7 +17,7 @@ export class authGuard implements CanActivate {
     
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      if (user.tipoPerfil === 1) {
+      if (user.tipoPerfil === 2) {
         return true;
       } else {
         this.router.navigate(['/home/login']);

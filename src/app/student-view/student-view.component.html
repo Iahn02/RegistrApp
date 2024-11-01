@@ -1,23 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title
+      class="ion-text-left"
+      style="position: relative; top: 10%; left: 0; margin-left: 2%; font-size: 20px; font-weight: bold"
+    >
+      RegistrAPP
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-text style="margin-right: 30px; font-size: 24px;">{{ usuario.nombre }} </ion-text>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-grid>
     <ion-row>
-      <ion-col size="12" class="ion-text-right">
-        <ion-card class="user-info-card">
+      <ion-col size="12" size-md="6" offset-md="3">
+        <ion-card style="background-color: #333;">
           <ion-card-header>
-            <ion-card-title>Información del Usuario</ion-card-title>
+            <ion-card-title style="color: white; font-size: 24px; text-align: center;">Información del Usuario</ion-card-title>
           </ion-card-header>
-          <ion-card-content>
-            <ion-list>
-              <ion-item>
-                <ion-label>Nombre: {{ usuario.nombre }}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>Apellido: {{ usuario.apellido }}</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>Email: {{ usuario.email }}</ion-label>
-              </ion-item>
-            </ion-list>
+          <ion-card-content style="background-color: #333!important;">
+            <ion-text style="color: white; font-size: 20px; text-align: center; display: block; background-color: #333!important;">Nombre: {{ usuario.user }}</ion-text>
+            <ion-text style="color: white; font-size: 20px; text-align: center; display: block;">Apellido: {{ usuario.nombre }}</ion-text>
           </ion-card-content>
         </ion-card>
       </ion-col>

@@ -49,3 +49,70 @@
     width: 50%;
   }
 }
+.tabla-cursos {
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2); /* Agregar sombra negra */
+ }
+.tabla-cursos ion-row {
+  border-top: none;
+  border-bottom: none !important;
+  color: #fff;
+  background-color: #333;
+  padding: 10px;
+}
+.tabla-cursos ion-col {
+  color: #fff; /* Cambiar el color de las letras a blanco */
+  font-weight: 400;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  font-weight: 300;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background: #25252b;
+  border: none;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+.tabla-cursos ion-col small {
+  color: #fff; /* Cambiar el color de las letras a blanco */
+  font-weight: 300;
+}
+.tabla-cursos ion-row:not(.spacer) {
+  border-radius: 7px;
+  overflow: hidden;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+.tabla-cursos ion-row:not(.spacer):hover {
+  -webkit-box-shadow: 0 2px 10px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px -5px rgba(0, 0, 0, 0.1);
+}
+.tabla-cursos ion-col a {
+  color: #fff; /* Cambiar el color de las letras a blanco */
+}
+.tabla-cursos ion-row:first-child ion-col:first-child {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.tabla-cursos ion-row:first-child ion-col:last-child {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.tabla-cursos ion-row.spacer ion-col {
+  padding: 0 !important;
+  height: 3px;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.tabla-cursos ion-row.active ion-col, .tabla-cursos ion-row:hover ion-col {
+  color: var(--ion-color-primary); /* Cambiar el color de las letras a primary al pasar el mouse */
+  background: #2e2e36;
+}
+.tabla-cursos ion-row.active ion-col a, .tabla-cursos ion-row:hover ion-col a {
+  color: var(--ion-color-primary); /* Cambiar el color de las letras a primary al pasar el mouse */
+}

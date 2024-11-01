@@ -8,7 +8,7 @@
   @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
-    styleUrls: ['home.page.scss'],
+    styleUrls: ['home.page.scss', ],
   })
   export class HomePage implements OnInit, OnDestroy {
     @ViewChild('modalQR') modalQR!: IonModal;
@@ -77,11 +77,11 @@
     toggleNightMode() {
       this.isNightMode = !this.isNightMode;
       if (this.isNightMode) {
-        document.body.classList.add('night-mode');
+        document.body.classList.add('dark-mode');
         document.body.classList.remove('day-mode');
       } else {
         document.body.classList.add('day-mode');
-        document.body.classList.remove('night-mode');
+        document.body.classList.remove('dark-mode');
       }
     }
 
@@ -139,28 +139,32 @@
     marcarAsistentePresente(estudiante: any) {
       // Cambiar el color del icono a verde para indicar que el estudiante ha sido marcado como asistente
       estudiante.asistenciaMarcada = true;
+      estudiante.status = 1; // 1 es para presente
       this.iconColor = 'success'; // Cambiar el color del icono a success
-      this.registrarAsistencia(estudiante.id, this.seccionSeleccionada.codigo, this.seccionSeleccionada.seccion, this.fechaHora.toISOString());
+      this.registrarAsistencia(estudiante.id, this.seccionSeleccionada.codigo, this.seccionSeleccionada.seccion, this.fechaHora.toISOString(), estudiante.status);
     }
 
     marcarAsistenteAusente(estudiante: any) {
       // Cambiar el color del icono a rojo para indicar que el estudiante ha sido marcado como ausente
       estudiante.asistenciaMarcada = false;
+      estudiante.status = 0; // 0 es para ausente
       this.iconColor = 'danger'; // Cambiar el color del icono a danger
-      this.registrarAsistencia(estudiante.id, this.seccionSeleccionada.codigo, this.seccionSeleccionada.seccion, this.fechaHora.toISOString());
+      this.registrarAsistencia(estudiante.id, this.seccionSeleccionada.codigo, this.seccionSeleccionada.seccion, this.fechaHora.toISOString(), estudiante.status);
     }
 
-    async registrarAsistencia(alumnoId: number, codigo: string, seccion: string, fecha: string) {
+    async registrarAsistencia(alumnoId: number, codigo: string, seccion: string, fecha: string, status: number) {
       try {
         const response = await axios.post('http://127.0.0.1:5000/registrar_asistencia', {
           alumno_id: alumnoId,
           codigo: codigo,
           seccion: seccion,
-          fecha: fecha
+          fecha: fecha,
+          status: status
         });
 
         if (response.status === 200) {
-          console.log('Asistencia registrada:', response.data.message);
+          const estadoAsistencia = status === 1 ? 'presente' : 'ausente';
+          console.log(`Asistencia registrada (${estadoAsistencia}):`, response.data.message);
         } else {
           console.error('Error al registrar la asistencia:', response.data.message);
         }
