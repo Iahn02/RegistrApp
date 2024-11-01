@@ -39,18 +39,7 @@
 
   
   /* Asegúrate de que todos los elementos tengan el fondo negro */
-  .toggle-dark-mode {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-  }
-
   ion-content, ion-header, ion-footer, ion-toolbar, ion-page {
-    --background: var(--background-color, #ffffff); /* Fondo blanco por defecto */
-  }
-
-  .dark-mode ion-content, .dark-mode ion-header, .dark-mode ion-footer, .dark-mode ion-toolbar, .dark-mode ion-page {
-    --background-color: #1e1e1e; /* Fondo negro para modo oscuro */
+    --background: #1e1e1e; /* Fondo negro para componentes de Ionic */
   }
   /* ... código existente ... */
