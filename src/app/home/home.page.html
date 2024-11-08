@@ -103,8 +103,8 @@
         <ion-item *ngFor="let estudiante of seccionSeleccionada.alumnos">
           <ion-label>{{ estudiante.nombre }}</ion-label>
           <ion-icon
-            [name]="estudiante.asistenciaMarcada ? 'checkmark-circle' : 'close-circle'"
-            [color]="estudiante.asistenciaMarcada ? 'success' : 'danger'"
+            [name]="estudiante.status === 1 ? 'checkmark-circle' : 'close-circle'"
+            [color]="estudiante.status === 1 ? 'success' : 'danger'"
             slot="start"
           ></ion-icon>
           <ion-button

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NotFoundPage } from './not-found/not-found.page'; // Importa el componente NotFoundPage
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
     redirectTo: 'home/login',
     pathMatch: 'full'
   },
+  {
+    path: '**',
+    component: NotFoundPage, // Enruta al componente NotFoundPage
+  }
 ];
 
 @NgModule({

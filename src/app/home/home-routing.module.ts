@@ -6,6 +6,7 @@ import { StudentViewComponent } from '../student-view/student-view.component';
 import { RestablecercontrasenaComponent } from '../restablecercontrasena/restablecercontrasena.component'; // Importa el componente Restablecercontrasena
 import { authGuard } from '../guards/auth.guard'; // Importa el authGuard
 import { studentGuard } from '../guards/student.guard'; // Importa el studentGuard
+import { NotFoundPage } from '../not-found/not-found.page'; // Importa el componente NotFoundPage
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'restablecercontrasena',
     component: RestablecercontrasenaComponent,
+  },
+  {
+    path: '**',
+    component: NotFoundPage, // Enruta al componente NotFoundPage
   }
 ];
 
