@@ -10,34 +10,24 @@ export class authGuard implements CanActivate {
   constructor(private router: Router, private toastController: ToastController) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    const navigation = this.router.getCurrentNavigation();
+    const perfil = localStorage.getItem('perfil');
+    const views = JSON.parse(localStorage.getItem('views') || '[]');
+    const targetView = views.find((view: any) => state.url.includes(view.view));
+    console.log('perfil:', perfil);
+    console.log('views:', views);
+    console.log('targetView:', targetView);
 
-    // Obtener los usuarios del local storage
-    const storedUser = localStorage.getItem('user');
-    
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      if (user.tipoPerfil === 1) {
-        return true;
-      } else {
-        this.router.navigate(['/home/login']);
-        this.presentToast('No tienes acceso a esta vista', 'danger');
-        return false;
-      }
+    if (targetView && targetView.letter === perfil) {
+      return true;
     } else {
-      this.router.navigate(['/home/login']);
-      this.presentToast('No tienes acceso a esta vista', 'danger');
+      const toast = await this.toastController.create({
+        message: 'No tiene permiso para acceder a esta vista.',
+        duration: 2000,
+        position: 'top'
+      });
+      await toast.present();
+      this.router.navigate(['/login']);
       return false;
     }
-  }
-
-  async presentToast(message: string, color: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000,
-      position: 'top',
-      color: color
-    });
-    toast.present();
   }
 }

@@ -1,0 +1,50 @@
+ion-button {
+  width: 33.33%; // Un tercio del ancho de la página
+  margin: 0 auto; // Centrar el botón horizontalmente
+  display: block; // Asegurar que el botón ocupe todo el ancho asignado
+}
+
+ion-item.password-item {
+  display: flex;
+  align-items: center;
+}
+
+ion-button.password-toggle {
+  margin-left: auto; // Alinear el botón a la derecha
+}
+
+
+
+@media (max-width: 576px) {
+  ion-card {
+    width: 100%;
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+  ion-item.password-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  ion-button.password-toggle {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
+
+.btn-submit:hover {
+  background-color: #4444fe !important ; // Cambiar el color de fondo al pasar el mouse
+  color: #ffffff; // Asegurar que el texto permanezca blanco
+}
+.btn_ojo:hover {
+  color: #ffffff !important;
+   // Cambiar el color del ojo a rojo cuando el mouse esté arriba de él
+   background-color:  rgb(42, 42, 42) !important;
+}
+.btn-restablecer:hover {
+  color: #4444fe !important;
+
+}
+
+
+

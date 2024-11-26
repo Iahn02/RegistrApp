@@ -10,6 +10,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { StudentViewComponent } from '../student-view/student-view.component';
 import { RestablecercontrasenaComponent } from '../restablecercontrasena/restablecercontrasena.component';
 import { NotFoundPage } from '../not-found/not-found.page'; // Importa el componente NotFoundPage
+import { LoginProfesorComponent } from '../login-profesor/login.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { NotFoundPage } from '../not-found/not-found.page'; // Importa el compon
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage, LoginComponent, NavbarComponent, RestablecercontrasenaComponent, NotFoundPage], // Agrega NotFoundPage a las declaraciones
+  declarations: [HomePage, LoginComponent, NavbarComponent, RestablecercontrasenaComponent, NotFoundPage, LoginProfesorComponent], // Agrega NotFoundPage a las declaraciones
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}

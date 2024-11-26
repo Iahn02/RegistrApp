@@ -8,7 +8,7 @@
       RegistrAPP
     </ion-title>
     <ion-buttons slot="end">
-      <ion-text style="margin-right: 30px; font-size: 24px;">{{ user.nombre }} </ion-text>
+      <ion-text style="margin-right: 30px; font-size: 24px;"> </ion-text>
       <ion-button
         (click)="toggleNightMode()"
         style="margin-left: auto; margin-right: 20px;"
@@ -25,7 +25,7 @@
       <ion-col size="12" size-md="6" offset-md="3">
         <ion-card style="background-color: #333;">
           <ion-card-header>
-            <ion-card-title style="color: white; font-size: 24px; text-align: center;">Hola {{ user.nombre }}</ion-card-title>
+            <ion-card-title style="color: white; font-size: 24px; text-align: center;">Hola</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <ion-text style="color: white; font-size: 20px; text-align: center; display: block;">
@@ -36,7 +36,7 @@
       </ion-col>
       <ion-col size="12" size-md="8" offset-md="2" style="margin: 10px;">
         <ion-grid class="tabla-cursos">
-          <ion-row style="background-color: var(--ion-color-primary)">
+        <!--   <ion-row style="background-color: var(--ion-color-primary)">
             <ion-col
               style="
                 color: white !important;
@@ -53,11 +53,12 @@
               "
               >Código del Curso</ion-col
             >
-          </ion-row>
-          <ion-row *ngFor="let curso of cursos" (click)="abrirModal(curso)">
+          </ion-row> -->
+         <!--  <ion-row *ngFor="let curso of cursos" (click)="abrirModal(curso)">
             <ion-col>{{ curso.nombre }}</ion-col>
             <ion-col>{{ curso.codigo }}</ion-col>
-          </ion-row>
+          </ion-row> -->
+          <ion-button (click)="abrirModal()">Iniciar Asistencia</ion-button>
         </ion-grid>
       </ion-col>
     </ion-row>

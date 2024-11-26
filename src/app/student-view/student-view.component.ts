@@ -61,8 +61,9 @@ export class StudentViewComponent implements OnInit {
 
   // Método para cerrar sesión
   cerrarSesion() {
-    localStorage.removeItem('user');
-    this.router.navigate(['/home/login']);
+    localStorage.removeItem('perfil');
+    localStorage.removeItem('Autenticacion');
+    this.router.navigate(['/login']);
   }
 
   confirmarCerrarSesion() {

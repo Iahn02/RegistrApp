@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundPage } from './not-found/not-found.page'; // Importa el componente NotFoundPage
+import { LoginComponent } from './login/login.component';
+import { LoginProfesorComponent } from './login-profesor/login.component';
 
 const routes: Routes = [
   {
@@ -9,8 +11,16 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home/login',
+    redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'login-profesor',
+    component: LoginProfesorComponent,
   },
   {
     path: '**',

@@ -3,25 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
 import { LoginComponent } from '../login/login.component';
 import { StudentViewComponent } from '../student-view/student-view.component';
-import { RestablecercontrasenaComponent } from '../restablecercontrasena/restablecercontrasena.component'; // Importa el componente Restablecercontrasena
-import { authGuard } from '../guards/auth.guard'; // Importa el authGuard
-import { studentGuard } from '../guards/student.guard'; // Importa el studentGuard
-import { NotFoundPage } from '../not-found/not-found.page'; // Importa el componente NotFoundPage
+import { RestablecercontrasenaComponent } from '../restablecercontrasena/restablecercontrasena.component'; 
+import { authGuard } from '../guards/auth.guard'; 
+import { NotFoundPage } from '../not-found/not-found.page'; 
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'profesor-view',
     component: HomePage,
-    canActivate: [authGuard] // Añade el authGuard
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'student-view',
     component: StudentViewComponent,
-    canActivate: [studentGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'restablecercontrasena',
@@ -29,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundPage, // Enruta al componente NotFoundPage
+    component: NotFoundPage, 
   }
 ];
 

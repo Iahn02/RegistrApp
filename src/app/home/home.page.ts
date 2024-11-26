@@ -54,10 +54,11 @@ export class HomePage implements OnInit, OnDestroy {
   qrSubscription!: Subscription; // Declarar la propiedad qrSubscription
   countdownSubscription!: Subscription; // Declarar la propiedad countdownSubscription
 
-  abrirModal(seccion: any) {
-    this.seccionSeleccionada = seccion;
-    this.generarQRCode(); // Obtener el QR al abrir el modal
+  abrirModal() {
+   /*  this.seccionSeleccionada = seccion;
+    this.generarQRCode(); // Obtener el QR al abrir el modal */
     this.modalQR.present();
+    
   }
 
   cerrarModal() {
@@ -68,7 +69,9 @@ export class HomePage implements OnInit, OnDestroy {
   cerrarSesion() {
     // Lógica para cerrar sesión
     localStorage.removeItem('user'); // Eliminar el usuario del almacenamiento local
-    this.router.navigate(['/home/login']);
+    localStorage.removeItem('perfil');
+    localStorage.removeItem('Autenticacion');
+    this.router.navigate(['/login']);
   }
 
   confirmarCerrarSesion() {

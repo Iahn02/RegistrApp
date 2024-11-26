@@ -4,12 +4,12 @@
       <ion-col size="12">
         <ion-card style="background-color: #1e1e1e; color: #ffffff; border: 1px solid #333; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); border-radius: 10px;">
           <ion-card-header class="ion-text-center" style="background-color: #2a2a2a; color: #ffffff; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-            <ion-card-title style="font-size: 1.5em; font-weight: bold; color: #ffffff;">Iniciar Sesión</ion-card-title>
+            <ion-card-title style="font-size: 1.5em; font-weight: bold; color: #ffffff;">Iniciar Sesión (Alumno)</ion-card-title>
           </ion-card-header>
           <br>
           <ion-card-content >
             <ion-item style="--background: #2a2a2a; --color: #ffffff; border-radius: 5px; margin-bottom: 20px;">
-              <ion-label style="color: #ffffff; margin-right: 10px; padding: 12px;">Usuario</ion-label>
+              <ion-label style="color: #ffffff; margin-right: 10px; padding: 12px;">Correo Electronico</ion-label>
               <ion-input type="text" [(ngModel)]="user" name="user" required style="background-color: #333; color: #ffffff; border-radius: 5px; padding: 10px;"></ion-input>
             </ion-item>
             <ion-item style="--background: #2a2a2a; --color: #ffffff; border-radius: 5px; margin-bottom: 20px;">
@@ -21,8 +21,9 @@
             </ion-item>
             <ion-button expand="block" type="submit" class="mt-3" style="background-color: #007bff; color: #ffffff; transition: background-color 0.3s ease; border-radius: 5px; width: 100%;">Ingresar</ion-button>
             <p class="text-center mt-3">
-              <a href="javascript:void(0);" (click)="navigateToRestablecerContrasena()" style="color: #ffffff; transition: color 0.3s ease;" class="btn-restablecer">Restablecer Contraseña</a>
-            </p>
+<!--               <a href="javascript:void(0);" (click)="navigateToRestablecerContrasena()" style="color: #ffffff; transition: color 0.3s ease;" class="btn-restablecer">Restablecer Contraseña</a>
+ -->           
+          <a href="/login-profesor">Soy Profesor (Ingresar)</a> </p>
           </ion-card-content>
         </ion-card>
       </ion-col>

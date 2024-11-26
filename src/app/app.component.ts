@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  views = [
+    { view: 'profesor-view', letter: 'P' },
+    { view: 'student-view', letter: 'A' }
+  ];
+
+  constructor() {
+    localStorage.setItem('views', JSON.stringify(this.views));
+  }
 }

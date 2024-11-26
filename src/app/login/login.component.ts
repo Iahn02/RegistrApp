@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import axios from 'axios'; // Importar axios correctamente
+import { ApiService } from '../services/api.service'; // Importar ApiService correctamente
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   user: string = '';
   password: string = '';
   newPassword: string = ''; // Nueva contraseña
@@ -20,48 +20,27 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private apiService: ApiService // Inyectar ApiService
   ) { }
-
-  ngOnInit() {
-    this.applyTheme();
-  }
-
-  async onSubmit() {
-    console.log('Usuario:', this.user, 'Password:', this.password, );
-    try {
-      const body = {
-        user: this.user,
-        password: this.password
-      };
-      const response = await axios.post('http://127.0.0.1:5000/login', body);
-      console.log('Comunicación con la PI:', response); // Agregar console log de la comunicación con la PI
-      if (response.status === 200) {
-        const user = response.data;
-        localStorage.setItem('user', JSON.stringify(user));
-        console.log('Usuario almacenado en localStorage:', user);
-        this.presentToast('Inicio de sesión exitoso');
-        // Validar el perfil del usuario y redirigir según corresponda
-        let route = '/home';
-        if (user.tipoPerfil === 1) {
-          route = '/home';
-        } else if (user.tipoPerfil === 2) {
-          route = '/home/student-view';
+   onSubmit() {
+    this.apiService.loginAlumno({ user: this.user, password: this.password }).subscribe(
+      response => {
+        console.log('Respuesta del servidor:', response);
+        if (response) {
+          this.presentToast('Inicio de sesión exitoso', 'success');
+          this.router.navigate(['/home/student-view']);
+        } else {
+          this.presentToast('Error al iniciar sesión', 'danger');
+          this.failedAttempts++;
         }
-        this.router.navigate([route], { state: { user: user, perfil: user.tipoPerfil } }).then(() => {
-          window.location.reload();
-          this.limpiarInputs();
-        });
-      }
-    } catch (error: any) {
-      console.error('Error en la solicitud:', error);
-      if (error.response && error.response.status === 401) {
-        this.presentToast('No autorizado. Por favor, verifique sus credenciales.', 'danger');
-      } else {
+      },
+      error => {
+        console.log('Error del servidor:', error);
+        this.presentToast('Error al iniciar sesión', 'danger');
         this.failedAttempts++;
-        this.presentToast(`Usuario o contraseña incorrectos. Intentos fallidos: ${this.failedAttempts}`, 'danger');
       }
-    }
+    );
   }
 
   onUpdatePassword() {
@@ -99,27 +78,4 @@ export class LoginComponent implements OnInit {
     this.confirmPassword = '';
   }
 
-  toggleTheme(event: any) {
-    this.applyTheme();
-  }
-
-  applyTheme() {
-    this.isDarkTheme = true;
-    document.body.classList.remove('light-theme');
-    document.body.style.backgroundColor = '#121212';
-    document.body.style.color = '#ffffff';
-    document.querySelectorAll('.card').forEach((element) => {
-      element.classList.add('bg-dark', 'text-light');
-      element.classList.remove('bg-light', 'text-dark');
-    });
-    document.querySelectorAll('.btn').forEach((element) => {
-      element.classList.add('btn-dark');
-      element.classList.remove('btn-light');
-    });
-    document.querySelectorAll('ion-content').forEach((element) => {
-      element.style.backgroundColor = '#121212';
-      element.style.color = '#ffffff';
-    });
-    console.log('El color aún no ha cambiado');
-  }
 }
