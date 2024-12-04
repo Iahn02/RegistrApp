@@ -1,134 +1,110 @@
-<!--
-<h2 align="center">
-  ¡Bienvenido a RegistrAPP!
-  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="28">
-</h2>
--->
+<h1 align="center">✨ **RegistrAPP** 📘</h1>
 
-<a href="https://komarev.com/ghpvc/?username=Iahn02">
-  <img align="right" src="https://komarev.com/ghpvc/?username=Iahn02&label=Visitantes&color=0e75b6&style=flat" alt="Visitantes del perfil" />
-</a>
-
-[![wakatime](https://wakatime.com/badge/user/eebb3dd8-d9b2-40de-9b88-6fd6cac99dbc.svg)](https://wakatime.com/@eebb3dd8-d9b2-40de-9b88-6fd6cac99dbc)
-
-<!-- Intro  -->
-<h3 align="center">
-        <samp>&gt; ¡Hola!, Este es el
-                <b><a target="_blank" href="https://github.com/Iahn02/RegistrAPP">RegistrAPP</a></b>
-        </samp>
-</h3>
-
-<p align="center"> 
-  <samp>
-    <a href="https://www.google.com/search?q=RegistrAPP">「 Búscame en Google 」</a>
-    <br>
-    「 Las tecnologías usadas en este proyecto son 」 
-    <br>
-    <br>
-  </samp>
-</p>
 <p align="center">
- <a href="https://angular.io/" target="blank">
-  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
- </a>
- <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">
-  <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML" />
- </a>
- <a href="https://www.typescriptlang.org/" target="_blank">
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
- </a> 
- <a href="https://sass-lang.com/" target="_blank">
-  <img src="https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white" alt="SCSS" />
- </a> 
- <a href="https://git-scm.com/" target="_blank">
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"  />
- </a> 
- <a href="https://github.com/" target="_blank">
-  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"  />
- </a> 
- <a href="https://www.sqlite.org/index.html" target="_blank">
-  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"  />
- </a> 
- <a href="https://nodejs.org/" target="_blank">
-  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
- </a>
-</p>
-<br />
-
-<!-- About Section -->
-# Sobre RegistrAPP
-
-<p>
- <img align="right" width="350" src="/assets/programmer.gif" alt="Coding gif" />
-  
- ❤️ &emsp; RegistrAPP permite a los alumnos registrar su asistencia de manera rápida y eficiente, minimizando errores y facilitando el proceso para los docentes.<br/><br/>
- 📧 &emsp; Puedes contactarme en cualquier momento: vera.icm02@gmail.com<br/><br/>
- 💬 &emsp; Pregúntame cualquier cosa [aquí](https://github.com/Iahn02/RegistrAPP/issues)
-
+  <img src="https://komarev.com/ghpvc/?username=Iahn02&label=Visitantes&color=0e75b6&style=flat" alt="Visitantes del perfil" />
+  <a href="https://wakatime.com/@eebb3dd8-d9b2-40de-9b88-6fd6cac99dbc">
+    <img src="https://wakatime.com/badge/user/eebb3dd8-d9b2-40de-9b88-6fd6cac99dbc.svg" alt="Tiempo de codificación en Wakatime" />
+  </a>
 </p>
 
-### Lógica del proyecto
-
-
-<!-- Complemento de la lógica de la solución -->
-<p>
-  La lógica de la solución sería la siguiente:
-  <ol>
-    <li>Docente ingresa a sistema web con sus credenciales de acceso.</li>
-    <li>Docente comienza proceso de Asistencia en Línea, haciendo clic en un botón que genere un código QR.</li>
-    <li>Este código QR se despliega en el proyector de cada aula.</li>
-    <li>Los alumnos ingresan a la App ingresando sus credenciales de acceso.</li>
-    <li>Se despliega la cámara del dispositivo móvil.</li>
-    <li>El código es leído y a su vez, registrado.</li>
-    <li>La asistencia queda registrada con su día y hora correctamente.</li>
-  </ol>
+<p align="center">
+  <samp>Moderniza y simplifica el registro de asistencia en instituciones educativas 🚀</samp>
 </p>
 
-<p>
-  Los principales objetivos de la App son:
-  <ul>
-    <li>Reducir los tiempos destinados para registrar la asistencia.</li>
-    <li>Minimizar errores de registros por motivos ya mencionados.</li>
-    <li>Instar a los alumnos a asistir presencialmente a clases.</li>
-    <li>Mejorar el proceso de reportes de asistencias.</li>
-  </ul>
-</p>
+---
 
-<br/>
+## 📝 **Descripción de la Aplicación**  
 
-### Configuración del Proyecto
-- **Frontend**: Angular, utilizando Ionic para la interfaz de usuario móvil y TypeScript para el desarrollo.
+**RegistrAPP** está diseñada para facilitar el proceso de registro de asistencia en entornos educativos. Combina autenticación segura con tecnología QR para proporcionar una experiencia rápida, eficiente y sin complicaciones.  
 
-### Archivos Principales
+---
 
-- **app.module.ts**: Define el módulo principal de la aplicación, incluyendo los componentes, servicios y rutas.
-- **app.component.ts**: Contiene el componente principal de la aplicación, que es el punto de entrada de la aplicación.
-- **app.component.html**: Es el archivo HTML asociado al componente principal, que define la estructura de la interfaz de usuario.
-- **app-routing.module.ts**: Define las rutas de la aplicación y cómo se asignan a los componentes.
+## 🌟 **Funcionalidades Principales**  
 
-### Instrucciones para correr el programa
+### 👩‍🏫 **Para Docentes:**  
+- ✅ **Inicio de Sesión:** accede a una cuenta para usar la aplicación.   
+- ✅ **Generación de Códigos QR:** Crear códigos únicos que los alumnos escanean para registrar su asistencia.  
 
-1. **Clonar el repositorio**:
-   ```bash
-   git clone https://github.com/Iahn02/RegistrAPP.git
-   cd RegistrAPP
-   ```
+### 🎓 **Para Alumnos:**  
+- ✅ **Inicio de Sesión:** accede a una cuenta para usar la aplicación.   
+- ✅ **Registro de Asistencia:** Escanear el código QR generado por el docente.  
 
-2. **Instalar las dependencias**:
-   ```bash
-   npm install
-   ```
+---
 
-3. **Correr el servidor de desarrollo**:
-   ```bash
-   ng serve
-   ```
+## ⚙️ **¿Cómo Funciona?**  
 
-4. **Acceder a la aplicación**:
-   - Abre tu navegador y ve a `http://localhost:4200/` para ver la aplicación en funcionamiento.
+1. **Registro e Inicio de Sesión:**  
+   - Docentes y alumnos crean sus cuentas y luego inician sesión.  
 
-### Notas adicionales
-- Asegúrate de tener Node.js y Angular CLI instalados en tu sistema.
-- Si encuentras algún problema, revisa la documentación oficial de Angular o consulta los foros de la comunidad.
+2. **Asistencia con QR:**  
+   - Los docentes generan un código QR para cada clase.  
+   - Los alumnos lo escanean con la aplicación para registrar automáticamente su asistencia.  
 
-¡Disfruta usando RegistrAPP!
+---
+
+## 🎯 **Beneficios**  
+
+- 🌟 **Fácil de Usar:** Interfaz intuitiva diseñada para usuarios de cualquier nivel técnico.  
+- ⚡ **Rápido y Eficiente:** El uso de códigos QR minimiza los tiempos de registro.  
+- 🔒 **Seguro:** Manejo confiable de la información de inicio de sesión y datos personales.  
+
+---
+
+## 💻 **Tecnologías Utilizadas**  
+
+| **Tecnología**  | **Propósito**                                   |  
+|------------------|------------------------------------------------|  
+| ![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)   | Framework para el desarrollo del frontend. |  
+| ![Ionic](https://img.shields.io/badge/Ionic-3880FF?style=flat-square&logo=ionic&logoColor=white)       | Diseño de interfaz móvil.                  |  
+| ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white) | Lenguaje para una app robusta y segura.    |  
+| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)  | Backend para la lógica de la aplicación.   |  
+| ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)    | Almacenamiento ligero y eficiente.         |  
+| ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)    | Control de versiones y colaboración.       |  
+
+---
+
+## 🚀 **Configuración del Proyecto**  
+
+1. **Clonar el Repositorio:**  
+   ```bash  
+   git clone https://github.com/Iahn02/RegistrAPP.git  
+   cd RegistrAPP  
+Instalar las Dependencias:
+
+bash
+Copiar código
+npm install  
+Correr el Servidor de Desarrollo:
+
+bash
+Copiar código
+ng serve  
+Acceder a la Aplicación:
+
+Abre tu navegador y ve a http://localhost:4200/.
+📂 Archivos Principales
+app.module.ts: Módulo principal que incluye componentes, servicios y rutas.
+app.component.ts: Contiene el componente raíz de la aplicación.
+app.component.html: Define la estructura visual del componente principal.
+app-routing.module.ts: Administra las rutas y navegación entre componentes.
+🤝 Contribuciones
+¿Te interesa contribuir? ¡Eres bienvenido!
+
+Haz un fork del repositorio.
+Crea una rama con tu nueva funcionalidad:
+bash
+Copiar código
+git checkout -b feature/AmazingFeature
+Haz un commit de tus cambios:
+bash
+Copiar código
+git commit -m 'Add AmazingFeature'
+Haz un push a la rama:
+bash
+Copiar código
+git push origin feature/AmazingFeature
+Abre un pull request para revisión.
+📧 Contacto
+Email: vera.icm02@gmail.com
+Dudas o Sugerencias: Abrir un issue.
+<h2 align="center">🎉 ¡Gracias por Usar RegistrAPP! 🎉</h2> <p align="center"> 🎓 Moderniza la gestión de asistencia en tu institución y ahorra tiempo valioso con **RegistrAPP**. 🚀 </p> ```
