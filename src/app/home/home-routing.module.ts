@@ -7,6 +7,7 @@ import { RestablecercontrasenaComponent } from '../restablecercontrasena/restabl
 import { authGuard } from '../guards/auth.guard'; 
 import { NotFoundPage } from '../not-found/not-found.page'; 
 
+
 const routes: Routes = [
   {
     path: 'profesor-view',

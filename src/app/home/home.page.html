@@ -12,7 +12,8 @@
       <ion-button
         (click)="toggleNightMode()"
         style="margin-left: auto; margin-right: 20px;"
-      >
+      > 
+      
         <ion-icon name="moon" *ngIf="!isNightMode" style="margin-right: 30px;"></ion-icon>
         <ion-icon name="sunny" *ngIf="isNightMode" style="margin-right: 30px;"></ion-icon>
       </ion-button>
@@ -25,7 +26,7 @@
       <ion-col size="12" size-md="6" offset-md="3">
         <ion-card style="background-color: #333;">
           <ion-card-header>
-            <ion-card-title style="color: white; font-size: 24px; text-align: center;">Hola</ion-card-title>
+            <ion-card-title style="color: white; font-size: 24px; text-align: center;">Hola Profesor {{userDocente.nombre}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <ion-text style="color: white; font-size: 20px; text-align: center; display: block;">
@@ -36,7 +37,7 @@
       </ion-col>
       <ion-col size="12" size-md="8" offset-md="2" style="margin: 10px;">
         <ion-grid class="tabla-cursos">
-        <!--   <ion-row style="background-color: var(--ion-color-primary)">
+        <ion-row style="background-color: var(--ion-color-primary)">
             <ion-col
               style="
                 color: white !important;
@@ -53,12 +54,11 @@
               "
               >Código del Curso</ion-col
             >
-          </ion-row> -->
-         <!--  <ion-row *ngFor="let curso of cursos" (click)="abrirModal(curso)">
+          </ion-row>
+          <ion-row *ngFor="let curso of userDocente.cursos" (click)="abrirModalCurso(curso)">
             <ion-col>{{ curso.nombre }}</ion-col>
             <ion-col>{{ curso.codigo }}</ion-col>
-          </ion-row> -->
-          <ion-button (click)="abrirModal()">Iniciar Asistencia</ion-button>
+          </ion-row>
         </ion-grid>
       </ion-col>
     </ion-row>
@@ -81,6 +81,10 @@
             left: 50%;
             transform: translateX(-50%);
             padding: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px!important;
           "
         >
           {{ seccionSeleccionada.nombre }}
@@ -89,37 +93,26 @@
           [src]="qrCodeUrl"
           alt="Código QR"
           class="responsive-img"
-          style="margin-top: 5%; width: 100%; max-width: 300px; height: auto;"
+          style="margin-top: 10%; width: 100%; max-width: 300px; height: auto;"
         />
       </div>
       <p class="ion-text-center">
         {{ fechaHora | date:'dd/MM/yyyy HH:mm' }}
       </p>
 
-      <!-- Lista de estudiantes sin confirmar asistencia -->
+      <!-- Aquí trae a los estudiantes del curso del profesor -->
       <ion-list>
-        <ion-item *ngIf="seccionSeleccionada.alumnos.length === 0">
+        <ion-item *ngIf="estudiantes.length === 0">
           <ion-label>Aún no hay alumnos en este curso</ion-label>
         </ion-item>
-        <ion-item *ngFor="let estudiante of seccionSeleccionada.alumnos">
+        <ion-item *ngFor="let estudiante of estudiantes">
           <ion-label>{{ estudiante.nombre }}</ion-label>
           <ion-icon
-            [name]="estudiante.status === 1 ? 'checkmark-circle' : 'close-circle'"
-            [color]="estudiante.status === 1 ? 'success' : 'danger'"
+            [name]="estudiante.status ? 'checkmark-circle' : 'close-circle'"
+            [color]="estudiante.status? 'success' : 'danger'"
             slot="start"
           ></ion-icon>
-          <ion-button
-            slot="end"
-            (click)="marcarAsistentePresente(estudiante)"
-            color="success"
-            >Presente</ion-button
-          >
-          <ion-button
-            slot="end"
-            (click)="marcarAsistenteAusente(estudiante)"
-            color="danger"
-            >Ausente</ion-button
-          >
+         
         </ion-item>
       </ion-list>
     </ion-content>

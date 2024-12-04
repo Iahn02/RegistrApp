@@ -35,9 +35,45 @@ const initializeDefaultUsers = () => {
 
     if (docentes.length === 0) {
         const defaultDocente = {
+            id: 'docente-1',
             nombre: 'Diego',
             email: 'profesor@duoc.cl',
-            password: bcrypt.hashSync('password123', 10) // Contraseña encriptada
+            password: bcrypt.hashSync('password123', 10), // Contraseña encriptada
+            cursos: [
+                {
+                    nombre: "Matemáticas",
+                    codigo: "MAT101",
+                    alumnos: [
+                        { id: "alumno-1", nombre: "Angel", email: "alumno1@duoc.cl", status: true },
+                        { id: "alumno-2", nombre: "Iahn", email: "alumno2@duoc.cl", status: false },
+                        { id: "alumno-3", nombre: "Brando", email: "alumno3@duoc.cl", status: false },
+                        { id: "alumno-4", nombre: "Ana González", email: "ana.gonzalez@duoc.cl", status: false },
+                        { id: "alumno-5", nombre: "Luis Ramírez", email: "luis.ramirez@duoc.cl", status: false }
+                    ]
+                },
+                {
+                    nombre: "Física",
+                    codigo: "FIS101",
+                    alumnos: [
+                        { id: "alumno-6", nombre: "Laura Torres", email: "laura.torres@duoc.cl", status: false },
+                        { id: "alumno-7", nombre: "Pedro Castillo", email: "pedro.castillo@duoc.cl", status: false },
+                        { id: "alumno-8", nombre: "Sofía Morales", email: "sofia.morales@duoc.cl", status: false },
+                        { id: "alumno-9", nombre: "Miguel Herrera", email: "miguel.herrera@duoc.cl", status: false },
+                        { id: "alumno-10", nombre: "Carmen Díaz", email: "carmen.diaz@duoc.cl", status: false }
+                    ]
+                },
+                {
+                    nombre: "Química",
+                    codigo: "QUI101",
+                    alumnos: [
+                        { id: "alumno-11", nombre: "Fernando Rojas", email: "fernando.rojas@duoc.cl", status: false },
+                        { id: "alumno-12", nombre: "Patricia Vega", email: "patricia.vega@duoc.cl", status: false },
+                        { id: "alumno-13", nombre: "Jorge Navarro", email: "jorge.navarro@duoc.cl", status: false },
+                        { id: "alumno-14", nombre: "Elena Cruz", email: "elena.cruz@duoc.cl", status: false },
+                        { id: "alumno-15", nombre: "Raúl Mendoza", email: "raul.mendoza@duoc.cl", status: false }
+                    ]
+                }
+            ]
         };
         docentes.push(defaultDocente);
         writeJSONFile(docentesFilePath, docentes);
@@ -45,9 +81,9 @@ const initializeDefaultUsers = () => {
 
     if (alumnos.length === 0) {
         const defaultAlumnos = [
-            { nombre: 'Angel', email: 'alumno1@duoc.cl', password: bcrypt.hashSync('password123', 10) },
-            { nombre: 'Iahn', email: 'alumno2@duoc.cl', password: bcrypt.hashSync('password123', 10) },
-            { nombre: 'Brando', email: 'alumno3@duoc.cl', password: bcrypt.hashSync('password123', 10) }
+            { id: 'alumno-1', nombre: 'Angel', email: 'alumno1@duoc.cl', password: bcrypt.hashSync('password123', 10), status: true },
+            { id: 'alumno-2', nombre: 'Iahn', email: 'alumno2@duoc.cl', password: bcrypt.hashSync('password123', 10), status: false },
+            { id: 'alumno-3', nombre: 'Brando', email: 'alumno3@duoc.cl', password: bcrypt.hashSync('password123', 10), status: false }
         ];
         alumnos.push(...defaultAlumnos);
         writeJSONFile(alumnosFilePath, alumnos);
@@ -75,7 +111,7 @@ router.post('/docente/login', (req, res) => {
     if (!docente || !bcrypt.compareSync(password, docente.password)) {
         return res.status(401).json({ message: 'Credenciales incorrectas' });
     }
-    res.status(200).json({ message: 'Docente autenticado' });
+    res.status(200).json({ message: 'Docente autenticado', docente });
 });
 
 // Registro de Alumno
@@ -96,7 +132,9 @@ router.post('/alumno/login', (req, res) => {
     if (!alumno || !bcrypt.compareSync(password, alumno.password)) {
         return res.status(401).json({ message: 'Credenciales incorrectas' }); 
     }
-    res.status(200).json({ message: 'Alumno autenticado' }); 
+    res.status(200).json({ message: 'Alumno autenticado', alumno }); 
 });
 
-module.exports = router;
+module.exports = { router };
+
+

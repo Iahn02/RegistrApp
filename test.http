@@ -1,0 +1,11 @@
+POST https://backend-duoc-app.netlify.app/auth/alumno/login
+Content-Type: application/json
+
+{
+    "user": "alumno1@duoc.cl",
+    "password": "password123"
+}
+
+
+
+GET https://backend-duoc-app.netlify.app/asistencia/estudiantes/docente-1/MAT101

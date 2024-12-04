@@ -27,18 +27,22 @@ export class LoginComponent {
     this.apiService.loginAlumno({ user: this.user, password: this.password }).subscribe(
       response => {
         console.log('Respuesta del servidor:', response);
-        if (response) {
+        if (response.success) {
+          localStorage.setItem('alumno', JSON.stringify(response.alumno));
+          console.log('Alumno guardado en el local storage:', response.alumno);
           this.presentToast('Inicio de sesión exitoso', 'success');
           this.router.navigate(['/home/student-view']);
         } else {
           this.presentToast('Error al iniciar sesión', 'danger');
           this.failedAttempts++;
         }
+        this.limpiarInputs(); // Limpiar los inputs después de la respuesta
       },
       error => {
         console.log('Error del servidor:', error);
         this.presentToast('Error al iniciar sesión', 'danger');
         this.failedAttempts++;
+        this.limpiarInputs(); // Limpiar los inputs después de la respuesta
       }
     );
   }

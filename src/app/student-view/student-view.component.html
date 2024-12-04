@@ -20,8 +20,9 @@
             <ion-card-title style="color: white; font-size: 24px; text-align: center;">Información del Usuario</ion-card-title>
           </ion-card-header>
           <ion-card-content style="background-color: #333!important;">
-            <ion-text style="color: white; font-size: 20px; text-align: center; display: block; background-color: #333!important;">Nombre: {{ usuario.user }}</ion-text>
-            <ion-text style="color: white; font-size: 20px; text-align: center; display: block;">Apellido: {{ usuario.nombre }}</ion-text>
+            <ion-text style="color: white; font-size: 20px; text-align: center; display: block; background-color: #333!important;">Nombre: {{ usuario.nombre }}</ion-text>
+            <ion-text style="color: white; font-size: 20px; text-align: center; display: block;">Apellido: {{ usuario.email }}</ion-text>
+            <ion-text style="color: white; font-size: 20px; text-align: center; display: block;">status: {{ usuario.status ? 'Presente' : 'Ausente' }}</ion-text>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -37,8 +38,13 @@
 <ion-modal #modal>
   <ng-template>
     <ion-content class="ion-padding">
-      <img src="assets/imgs/cam.jpg" alt="Imagen Central">
-      <ion-button expand="block" (click)="cerrarModal()">Cerrar</ion-button>
+      <!-- Escáner de código QR -->
+      <zxing-scanner
+        [start]="true"
+        (scanSuccess)="onCodeResult($event)"
+        style="width: 100%; height: auto;">
+      </zxing-scanner>
+      <ion-button expand="block" (click)="cerrarModal()" style="margin-top: 0;">Cerrar</ion-button>
     </ion-content>
   </ng-template>
 </ion-modal>

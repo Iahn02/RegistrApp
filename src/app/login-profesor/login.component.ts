@@ -26,13 +26,16 @@ export class LoginProfesorComponent {
    onSubmit() {
      this.apiService.loginDocente({ user: this.user, password: this.password }).subscribe(
       response => {
-        console.log('Respuesta del servidor:', response);
         if (response) {
+          console.log('Docente autenticado:', response.docente);
+          localStorage.setItem('docente', JSON.stringify(response.docente)); // Guardar el docente en localStorage
           this.presentToast('Inicio de sesión exitoso', 'success');
           this.router.navigate(['/home/profesor-view']);
+          this.limpiarInputs(); // Limpiar los inputs después de la respuesta
         } else {
           this.presentToast('Error al iniciar sesión', 'danger');
           this.failedAttempts++;
+          this.limpiarInputs(); // Limpiar los inputs después de la respuesta
         }
       },
       error => {
