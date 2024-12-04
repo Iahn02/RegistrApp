@@ -78,6 +78,20 @@ router.get('/estudiantes/:docenteId/:cursoCodigo', (req, res) => {
 
     res.json(curso.alumnos);
 });
+// Endpoint para obtener todos los usuarios con datos en duro
+router.get('/usuarios', (req, res) => {
+    const usuarios = [
+        { id: 'usuario-1', nombre: 'Juan Pérez', email: 'juan.perez@duoc.cl' },
+        { id: 'usuario-2', nombre: 'María López', email: 'maria.lopez@duoc.cl' },
+        { id: 'usuario-3', nombre: 'Carlos Sánchez', email: 'carlos.sanchez@duoc.cl' },
+        { id: 'usuario-4', nombre: 'Ana Torres', email: 'ana.torres@duoc.cl' },
+        { id: 'usuario-5', nombre: 'Luis Gómez', email: 'luis.gomez@duoc.cl' }
+    ];
+
+    res.json(usuarios);
+});
+
+
 
 // Exportar el servidor junto con el router
 module.exports = { router, server };

@@ -9,3 +9,7 @@ Content-Type: application/json
 
 
 GET https://backend-duoc-app.netlify.app/asistencia/estudiantes/docente-1/MAT101
+
+
+
+GET https://app-duoc.netlify.app/usuarios
