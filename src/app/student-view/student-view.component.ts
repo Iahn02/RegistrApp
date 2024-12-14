@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular'; // Importar ToastController aquí
 import { IonModal } from '@ionic/angular';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
@@ -23,7 +23,8 @@ export class StudentViewComponent implements OnInit {
   mostrarAlerta: boolean = false;
   alertButtons: any[];
 
-  constructor(private router: Router, private apiService: ApiService) { // Inyectar el servicio ApiService
+  constructor(private router: Router, private apiService: ApiService, private toastController: ToastController) { // Inyectar ToastController
+    
     this.alertButtons = [
       {
         text: 'Cancelar',
@@ -77,22 +78,32 @@ export class StudentViewComponent implements OnInit {
     console.log('Resultado del escaneo:', resultString);
     // Ejecutar el endpoint de registrar presencia directamente al escanear el código QR
     const alumnoId = this.usuario.id; // Obtener el id del alumno del local storage
-    this.apiService.enviarPresencia(alumnoId).subscribe(
+    this.apiService.enviarPresencia(alumnoId, resultString).subscribe(
       response => {
-        if (response.success) {
-          console.log('Presencia registrada exitosamente');
+        console.log('Asistencia registrada exitosamente :', response.encontrado);
+        if (response.encontrado) {
+          console.log('Alumno encontrado:', response.alumno.nombre);
+          console.log(response.encontrado);
           this.usuario.status = true; // Actualizar el estado del alumno a true
-          // Aquí puedes mostrar un mensaje de éxito
+          this.presentToast(`Asistencia registrada y estado de presencia actualizado para el alumno ${response.alumno.nombre}`, 'success'); // Mostrar mensaje de éxito
         } else {
           console.log('Error en el registro de presencia:', response.message);
-          // Aquí puedes manejar el caso de error o datos no coincidentes
+          this.presentToast('Error en el registro de presencia', 'danger'); // Mostrar mensaje de error
         }
       },
       error => {
         console.error('Error al registrar presencia:', error);
-        // Aquí puedes manejar el error, como mostrar un mensaje de error
+        this.presentToast('Error al registrar presencia', 'danger'); // Mostrar mensaje de error
       }
     );
+  }
+  presentToast(message: string, color: string = 'success') {
+    this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top',
+      color: color
+    }).then(toast => toast.present());
   }
 }
 @NgModule({

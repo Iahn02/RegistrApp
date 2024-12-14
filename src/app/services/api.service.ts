@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
+import { io } from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://backend-express-seven.vercel.app/api'; 
+  private apiUrl = 'http://localhost:3000/api';
+  private socketUrl = 'http://localhost:3000/api/asistencia'; // URL base para Socket.IO
 
   constructor(private http: HttpClient) {}
 
@@ -35,18 +37,73 @@ export class ApiService {
       })
     );
   }
-
-  obtenerEstudiantes(docenteId: string, cursoCodigo: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/asistencia/estudiantes/${docenteId}/${cursoCodigo}`).pipe(
+  enviarPresencia(alumnoId: string, cursoCodigo: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/asistencia/registrar`, { alumnoId, cursoCodigo }).pipe(
       map((response: any) => {
-        console.log('Estudiantes obtenidos:', response);
+        console.log('Respuesta del servidor al registrar presencia:', response);
+        if (response.success) {
+          const socket = io(this.socketUrl, {
+            transports: ['polling', 'websocket'],
+            upgrade: false,
+            forceNew: true
+          });
+          socket.emit('nuevaAsistencia', { alumnoId });
+          socket.disconnect();
+        }
         return response;
       }),
       catchError((error) => {
-        console.log('Error al obtener estudiantes:', error);
-        return of([]);
+        console.log('Error al registrar presencia:', error);
+        return of({ success: false });
       })
     );
+  }
+
+  obtenerEstudiantes(docenteId: string, cursoCodigo: string): Observable<any> {
+    return new Observable(observer => {
+      const actualizarEstudiantes = () => {
+        this.http.get(`${this.apiUrl}/asistencia/estudiantes/${docenteId}/${cursoCodigo}`).pipe(
+          map((response: any) => {
+            console.log('Estudiantes obtenidos:', response);
+            observer.next(response);
+            observer.complete();
+          }),
+          catchError((error) => {
+            console.log('Error al obtener estudiantes:', error);
+            observer.next([]);
+            observer.complete();
+            return of([]);
+          })
+        ).subscribe();
+      };
+
+      actualizarEstudiantes();
+
+      console.log('Intentando conectar al socket...');
+      const socket = io(this.socketUrl, {
+        transports: ['polling', 'websocket'],
+        upgrade: false,
+        forceNew: true
+      });
+
+      socket.on('connect', () => {
+        console.log('Cliente conectado');
+      });
+
+      socket.on('nuevaAsistencia', ({ alumnoId }: { alumnoId: string }) => {
+        console.log(`Asistencia registrada para el alumno con ID: ${alumnoId}`);
+        actualizarEstudiantes();
+      });
+
+      socket.on('disconnect', () => {
+        console.log('Cliente desconectado');
+      });
+
+      return () => {
+        console.log('Desconectando del socket...');
+        socket.disconnect();
+      };
+    });
   }
 
   registerAlumno(data: any): Observable<any> {
@@ -73,7 +130,7 @@ export class ApiService {
   // Métodos para asistencia
   generarQR(): Observable<any> {
     const qr = require('qrcode');
-    const url = `${this.apiUrl}/registrar?timestamp=${new Date().getTime()}`; // Añadir un timestamp para actualizar la imagen
+    const url = `${this.apiUrl}/asistencia/registrar`; // Adaptar la URL de la API
     return new Observable(observer => {
       qr.toDataURL(url, (err: any, qrCodeUrl: any) => {
         if (err) {
@@ -89,20 +146,5 @@ export class ApiService {
     });
   }
 
-  enviarPresencia(alumnoId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/asistencia/registrar`, { alumnoId }).pipe(
-      map((response: any) => {
-        console.log('Asistencia registrada exitosamente:', response);
-        if (response.success) {
-          return { success: true, message: `Asistencia registrada y estado de presencia actualizado para el alumno ${alumnoId}` };
-        }
-        return { success: false, message: response.message };
-      }),
-      catchError((error) => {
-        console.log('Error al registrar asistencia:', error);
-        return of({ success: false, error: 'Error al registrar asistencia' });
-      })
-    );
-  }
 
 }

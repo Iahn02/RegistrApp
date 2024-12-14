@@ -94,6 +94,15 @@ export class HomePage implements OnInit, OnDestroy {
       this.apiService.obtenerEstudiantes(this.userDocente.id, this.seccionSeleccionada.codigo).subscribe(estudiantes => {
         this.estudiantes = estudiantes; // Asignar los estudiantes obtenidos
         console.log('Estudiantes obtenidos:', this.estudiantes);
+
+        // Adaptar lo del socket para que cada vez que emita un mensaje se dispare de nuevo el método obtenerEstudiantes
+        const socket = (window as any).io(this.apiService['apiUrl']);
+        socket.on('nuevaAsistencia', () => {
+          this.apiService.obtenerEstudiantes(this.userDocente.id, this.seccionSeleccionada.codigo).subscribe(nuevosEstudiantes => {
+            this.estudiantes = nuevosEstudiantes; // Actualizar los estudiantes obtenidos
+            console.log('Estudiantes actualizados:', this.estudiantes);
+          });
+        });
       });
 
     }
